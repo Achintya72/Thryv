@@ -5,6 +5,8 @@ class ThryvPlaceholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text("Hi");
+    return const Scaffold(
+      body: Center(child: Text("Hi")),
+    );
   }
 }
