@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "867292639067",
+    "project_id": "thryv-e1366",
+    "storage_bucket": "thryv-e1366.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:867292639067:android:32d3a24bae88d2d690747e",
+        "android_client_info": {
+          "package_name": "com.example.thryv"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDt6vUm5aexttnth5iDHYb4KUu3cA6bYdU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
