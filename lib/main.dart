@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
 import 'package:thryv/firebase_options.dart';
 import 'package:go_router/go_router.dart';
+import 'package:thryv/service/auth.dart';
+import 'package:thryv/userProvider.dart';
 import 'package:thryv/views/placeholder.dart';
 
 void main() async {
@@ -24,9 +27,15 @@ class Thryv extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      routerConfig: _router,
+    return StreamProvider.value(
+      value: AuthService().user,
+      initialData: null,
+      child: UserProvider(
+        child: MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          routerConfig: _router,
+        ),
+      ),
     );
   }
 }
