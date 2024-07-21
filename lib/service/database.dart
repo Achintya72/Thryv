@@ -8,7 +8,7 @@ class DatabaseService {
   static final defaultUser = {
     "name": "",
     "points": 0,
-    "age": 0,
+    "bday": "",
     "height": 0,
     "weight": 0,
     "email": "",

@@ -10,6 +10,7 @@ import 'package:thryv/userProvider.dart';
 import 'package:thryv/views/authentication/landing.view.dart';
 import 'package:thryv/views/authentication/signin.view.dart';
 import 'package:thryv/views/authentication/signup.view.dart';
+import 'package:thryv/views/onboarding/onboarding1.view.dart';
 import 'package:thryv/views/placeholder.dart';
 
 void main() async {
@@ -52,6 +53,27 @@ final _router = GoRouter(redirectLimit: 10, initialLocation: '/landing', routes:
     path: '/signIn',
     builder: (context, state) => const SignIn(),
     redirect: (context, state) => loggedInRedirect(context),
+  ),
+  GoRoute(
+    path: '/onboarding1',
+    builder: (context, state) => const Onboarding1(),
+    redirect: (context, state) {
+      AuthUser? user = Provider.of<AuthUser?>(context, listen: false);
+      UserData? userData = Provider.of<UserData?>(context, listen: false);
+
+      if (user?.uid == null) {
+        return '/splash';
+      }
+      if (userData?.name != null &&
+          userData?.name != "" &&
+          userData?.bday != null &&
+          userData?.bday != "" &&
+          userData?.phoneNum != null &&
+          userData?.phoneNum != "") {
+        return '/onboarding2';
+      }
+      return null;
+    },
   ),
 ]);
 
