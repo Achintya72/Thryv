@@ -10,7 +10,7 @@ class UserData {
   List<Activity> activities;
   String email;
   String phoneNum;
-  int age;
+  String bday;
   int height;
   int weight;
   int often;
@@ -25,7 +25,7 @@ class UserData {
       required this.activities,
       required this.email,
       required this.phoneNum,
-      required this.age,
+      required this.bday,
       required this.height,
       required this.weight,
       required this.often,
@@ -37,7 +37,7 @@ class UserData {
   factory UserData.fromJson(Map<String, dynamic> json) {
     String name = json["name"] ?? "";
     int points = json["points"] ?? 0;
-    int age = json["age"] ?? 0;
+    String bday = json["bday"] ?? 0;
     int height = json["height"] ?? 0;
     int weight = json["weight"] ?? 0;
     String email = json["email"] ?? "";
@@ -53,7 +53,7 @@ class UserData {
     return UserData(
       name: name,
       points: points,
-      age: age,
+      bday: bday,
       height: height,
       weight: weight,
       email: email,
@@ -71,7 +71,7 @@ class UserData {
     return {
       "name": name,
       "points": points,
-      "age": age,
+      "bday": bday,
       "height": height,
       "weight": weight,
       "email": email,
