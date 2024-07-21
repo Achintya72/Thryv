@@ -5,8 +5,9 @@ InputDecoration textInputDecoration = InputDecoration(
   filled: true,
   fillColor: const Color(0xFFE9E9E9),
   contentPadding: const EdgeInsets.all(12),
-  border:
-      OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(width: 0, style: BorderStyle.none)),
+  border: UnderlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide(width: 1, color: blue.shade100)),
   focusedBorder:
-      OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide(width: 1, color: purple.shade400)),
+      UnderlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(width: 1, color: green)),
+  errorBorder: UnderlineInputBorder(
+      borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(width: 1, color: Color(0xFFD84C4C))),
 );

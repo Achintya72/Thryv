@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 ThemeData thryvTheme = ThemeData(
   useMaterial3: true,
-  colorScheme: ColorScheme.fromSwatch(primarySwatch: purple),
+  // not working - colorScheme: ColorScheme.fromSwatch(primarySwatch: blue),
   scaffoldBackgroundColor: white.shade50,
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     backgroundColor: Colors.white,
@@ -33,6 +33,21 @@ ThemeData thryvTheme = ThemeData(
           GoogleFonts.getFont("Poppins").copyWith(fontSize: 12, fontWeight: FontWeight.w400, height: 1.2, letterSpacing: 0)),
 );
 
+const Map<int, Color> greenSwatch = <int, Color>{
+  100: Color(0xFFEFFFFD),
+  700: Color(0xFF4CD8C8),
+};
+
+const Map<int, Color> blueSwatch = <int, Color>{
+  100: Color(0xFFE2ECF0),
+  700: Color(0xFF114B5D),
+};
+
+const Map<int, Color> orangeSwatch = <int, Color>{
+  100: Color(0xFFFFEAD2),
+  700: Color(0xFFFF9F2D),
+};
+
 const Map<int, Color> pinkSwatch = <int, Color>{
   50: Color(0xFFFFEBF4),
   100: Color(0xFFFFDDED),
@@ -41,49 +56,6 @@ const Map<int, Color> pinkSwatch = <int, Color>{
   400: Color(0xFFAA6685),
   500: Color(0xFF553343),
   600: Color(0xFF331F28)
-};
-
-const Map<int, Color> yellowSwatch = <int, Color>{
-  50: Color(0xFFFEFDF2),
-  100: Color(0xFFFEFCE9),
-  200: Color(0xFFFDF9D3),
-  300: Color(0xFFFCF68D),
-  400: Color(0xFFDCD165),
-  500: Color(0xFF9C9341),
-  600: Color(0xFF323126)
-};
-
-const Map<int, Color> greenSwatch = <int, Color>{
-  50: Color(0xFFF6FDF8),
-  100: Color(0xFFEFFBF4),
-  200: Color(0xFFE0F8E9),
-  300: Color(0xFFD0F4DE),
-  400: Color(0xFF8BA394),
-  500: Color(0xFF45514A),
-  600: Color(0xFF2A312C),
-};
-
-const Map<int, Color> blueSwatch = <int, Color>{
-  50: Color(0xFFEEF8FE),
-  100: Color(0xFFE2F4FD),
-  200: Color(0xFFD4EEFC),
-  300: Color(0xFFC6E9FB),
-  400: Color(0xFFA9DEF9),
-  500: Color(0xFF8DB9CF),
-  600: Color(0xFF7194A6),
-  700: Color(0xFF546F7C),
-  800: Color(0xFF384A53),
-  900: Color(0xFF222C32),
-};
-
-const Map<int, Color> purpleSwatch = <int, Color>{
-  50: Color(0xFFFAF3FE),
-  100: Color(0xFFF6EAFD),
-  200: Color(0xFFEDD6FB),
-  300: Color(0xFFE4C1F9),
-  400: Color(0xFF9881A6),
-  500: Color(0xFF4C4053),
-  600: Color(0xFF1E1E1E),
 };
 
 const Map<int, Color> whiteSwatch = <int, Color>{
@@ -99,9 +71,9 @@ const Map<int, Color> whiteSwatch = <int, Color>{
   900: Color(0xFF2E2E2E),
 };
 
+const MaterialColor green = MaterialColor(0xFF4CD8C8, greenSwatch);
+const MaterialColor blue = MaterialColor(0xFF114B5D, blueSwatch);
+const MaterialColor orange = MaterialColor(0xFFFF9F2D, orangeSwatch);
 const MaterialColor pink = MaterialColor(0xFFFF99CB, pinkSwatch);
-const MaterialColor yellow = MaterialColor(0xFFFCF6BD, yellowSwatch);
-const MaterialColor green = MaterialColor(0xFFD0F4DE, greenSwatch);
-const MaterialColor blue = MaterialColor(0xFFA9DEF9, blueSwatch);
-const MaterialColor purple = MaterialColor(0xFFE4C1F9, purpleSwatch);
+
 const MaterialColor white = MaterialColor(0xFFE4E4E4, whiteSwatch);

@@ -33,49 +33,54 @@ String? loggedInRedirect(BuildContext context) {
   return null;
 }
 
-final _router = GoRouter(redirectLimit: 10, initialLocation: '/landing', routes: [
-  GoRoute(
-    path: '/landing',
-    builder: (context, state) => const LandingScreen(),
-    redirect: (context, state) => loggedInRedirect(context),
-  ),
-  GoRoute(
-    path: '/',
-    builder: (context, state) => const ThryvPlaceholder(),
-    redirect: (context, state) => '/landing',
-  ),
-  GoRoute(
-    path: '/signUp',
-    builder: (context, state) => const SignUp(),
-    redirect: (context, state) => loggedInRedirect(context),
-  ),
-  GoRoute(
-    path: '/signIn',
-    builder: (context, state) => const SignIn(),
-    redirect: (context, state) => loggedInRedirect(context),
-  ),
-  GoRoute(
-    path: '/onboarding1',
-    builder: (context, state) => const Onboarding1(),
-    redirect: (context, state) {
-      AuthUser? user = Provider.of<AuthUser?>(context, listen: false);
-      UserData? userData = Provider.of<UserData?>(context, listen: false);
+final _router = GoRouter(
+  redirectLimit: 10,
+  initialLocation: '/landing',
+  routes: [
+    GoRoute(
+      path: '/landing',
+      builder: (context, state) => const LandingScreen(),
+      redirect: (context, state) => loggedInRedirect(context),
+    ),
+    GoRoute(
+      path: '/',
+      builder: (context, state) => const ThryvPlaceholder(),
+      redirect: (context, state) => '/landing',
+    ),
+    GoRoute(
+      path: '/signUp',
+      builder: (context, state) => const SignUp(),
+      redirect: (context, state) => loggedInRedirect(context),
+    ),
+    GoRoute(
+      path: '/signIn',
+      builder: (context, state) => const SignIn(),
+      redirect: (context, state) => loggedInRedirect(context),
+    ),
+    GoRoute(
+      path: '/onboarding1',
+      builder: (context, state) => const Onboarding1(),
+      redirect: (context, state) {
+        AuthUser? user = Provider.of<AuthUser?>(context, listen: false);
+        UserData? userData = Provider.of<UserData?>(context, listen: false);
 
-      if (user?.uid == null) {
-        return '/splash';
-      }
-      if (userData?.name != null &&
-          userData?.name != "" &&
-          userData?.bday != null &&
-          userData?.bday != "" &&
-          userData?.phoneNum != null &&
-          userData?.phoneNum != "") {
-        return '/onboarding2';
-      }
-      return null;
-    },
-  ),
-]);
+        if (user?.uid == null) {
+          return '/splash';
+        }
+        if (userData?.name != null &&
+            userData?.name != "" &&
+            userData?.bday != null &&
+            userData?.bday != "" &&
+            userData?.phoneNum != null &&
+            userData?.phoneNum != "") {
+          return '/onboarding2';
+        }
+        return null;
+      },
+    ),
+  ],
+  errorBuilder: (context, state) => const ThryvPlaceholder(),
+);
 
 class Thryv extends StatelessWidget {
   const Thryv({super.key});

@@ -18,7 +18,7 @@ class Onboarding1 extends StatefulWidget {
 class _Onboarding1State extends State<Onboarding1> {
   String fname = "";
   String lname = "";
-  String bday = DateTime(2007, 2, 26).toString();
+  String bday = "";
   String phonenum = "";
 
   final _formKey = GlobalKey<FormState>();
@@ -28,6 +28,17 @@ class _Onboarding1State extends State<Onboarding1> {
     AuthUser? user = Provider.of<AuthUser?>(context);
     UserData? userData = Provider.of<UserData?>(context);
     final router = GoRouter.of(context);
+
+    DateTime? tryPreprocessDate() {
+      String? temp = userData?.bday;
+      if (temp != null) {
+        List<String> strings = temp.substring(0, 10).split("-");
+        List<int> nums = strings.map((e) => int.parse(e)).toList();
+
+        return DateTime(nums[0], nums[1], nums[2]);
+      }
+      return null;
+    }
 
     return Scaffold(
       body: Padding(
@@ -92,10 +103,10 @@ class _Onboarding1State extends State<Onboarding1> {
                     DateTimePicker(
                       decoration: textInputDecoration,
                       type: DateTimePickerType.date,
-                      initialValue: DateTime(2007, 2, 26).toString(),
+                      initialValue: userData?.bday ?? DateTime(2007, 2, 26).toString(),
                       firstDate: DateTime.now().subtract(const Duration(days: 365 * 100)),
                       lastDate: DateTime.now().subtract(const Duration(days: 365 * 16)),
-                      initialDate: DateTime(2007, 2, 26),
+                      initialDate: tryPreprocessDate() ?? DateTime(2007, 2, 26),
                       onChanged: (val) => bday = val,
                       validator: (val) => val != null && val.isEmpty ? "Please fill this." : null,
                     ),
@@ -103,7 +114,7 @@ class _Onboarding1State extends State<Onboarding1> {
                     Text("Phone Number", style: Theme.of(context).textTheme.labelSmall!.copyWith(color: white.shade700)),
                     const SizedBox(height: 6),
                     TextFormField(
-                        initialValue: userData?.name.split(" ").elementAtOrNull(1) ?? "",
+                        initialValue: userData?.phoneNum ?? "",
                         decoration: textInputDecoration.copyWith(hintText: "4253538910"),
                         validator: (val) => val != null && val.isEmpty ? 'Please fill this out.' : null,
                         onChanged: (val) => phonenum = val,
@@ -124,19 +135,19 @@ class _Onboarding1State extends State<Onboarding1> {
             FilledButton(
               style: darkExpand,
               onPressed: () async {
-                if (_formKey.currentState?.validate() ?? false) {
-                  if (user?.uid != null) {
-                    DatabaseService(uid: user!.uid).updateUserData({
-                      "name": fname.isNotEmpty && lname.isNotEmpty ? "$fname $lname" : userData?.name ?? "",
-                      "bday": bday.isNotEmpty ? bday : userData?.bday ?? "",
-                      "phoneNum": phonenum.isNotEmpty ? phonenum : userData?.phoneNum ?? "",
-                    });
+                if (user?.uid != null) {
+                  DatabaseService(uid: user!.uid).updateUserData({
+                    "name": fname.isNotEmpty && lname.isNotEmpty ? "$fname $lname" : userData?.name ?? "",
+                    "bday": bday.isNotEmpty ? bday : userData?.bday ?? "",
+                    "phoneNum": phonenum.isNotEmpty ? phonenum : userData?.phoneNum ?? "",
+                  });
+                  if (_formKey.currentState?.validate() ?? false) {
                     router.go('/onboarding2');
                   }
                 }
               },
               child: Text(
-                "Continue",
+                _formKey.currentState?.validate() ?? false ? "Continue" : "Save",
                 style: Theme.of(context).textTheme.labelLarge?.copyWith(
                       color: const Color(0xFFFFFFFF),
                     ),
